@@ -1,9 +1,11 @@
 from sklearn import svm
 import numpy as np
 from sklearn.externals import joblib
+from read_data import root
 
-images = joblib.load("C:\\temp\\grayscaled_images_numeric")
-labels = joblib.load("C:\\temp\\labels")
+
+images = joblib.load(root + "grayscaled_images_numeric.joblib.pkl")
+labels = joblib.load(root + "labels.joblib.pkl")
 
 images = np.asanyarray(images)
 images = images.reshape(60000,-60000)
@@ -13,5 +15,5 @@ lin_svc.fit(images, labels)
 
 print(lin_svc.score(images, labels))
 
-filename = "C:\\temp\\digits_classifier.joblib.pkl"
-_ = joblib.dump(lin_svc, filename)
+filename = root + "digits_classifier.joblib.pkl"
+joblib.dump(lin_svc, filename)

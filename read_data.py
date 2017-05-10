@@ -1,16 +1,16 @@
 import fileinput
 import struct
 from sklearn.externals import joblib
+root = "YOUR:\\ROOT\\PATH"
 
 def main():
-    labels_path = ["C:\\Work\\nn\\train-labels-idx1-ubyte.gz"]
+    labels_path = root + "train-labels-idx1-ubyte.gz"
     labels = get_labels(labels_path)
-    joblib.dump(labels, "C:\\temp\\labels")
+    joblib.dump(labels, root + "labels.joblib.pkl")
 
-    images = ["C:\\Work\\nn\\train-images-idx3-ubyte.gz"]
-    images = get_grayscaled_images(images)
-    joblib.dump(images, "C:\\temp\\grayscaled_images_numeric")
-
+    images_path = root + "train-images-idx3-ubyte.gz"
+    images = get_grayscaled_images(images_path)
+    joblib.dump(images, root + "grayscaled_images_numeric.joblib.pkl")
 
 def get_labels(labels_path):
     g = fileinput.FileInput(labels_path, openhook=fileinput.hook_compressed)
@@ -35,8 +35,8 @@ def get_labels(labels_path):
         j += 1
     return  labels
 
-def get_grayscaled_images(images):
-    f = fileinput.FileInput(images, openhook=fileinput.hook_compressed)
+def get_grayscaled_images(images_path):
+    f = fileinput.FileInput(images_path, openhook=fileinput.hook_compressed)
     x = f.__next__()
     head = []
     for i in range(4):

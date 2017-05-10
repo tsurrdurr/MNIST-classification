@@ -1,13 +1,20 @@
+import numpy as np
 import read_data as reader
 from sklearn.externals import joblib
+from read_data import  root
+
+def normalize(image):
+    image = np.asanyarray(image)
+    image = image.reshape(10000, -10000)
+    return image
 
 def main():
-    test_images_path = "C:\\Work\\nn\\t10k-images-idx3-ubyte.gz"
-    test_labels_path = "C:\\Work\\nn\\t10k-labels-idx1-ubyte.gz"
+    test_images_path = root + "t10k-images-idx3-ubyte.gz"
+    test_labels_path = root + "t10k-labels-idx1-ubyte.gz"
     test_labels = reader.get_labels(test_labels_path)
     test_images = reader.get_grayscaled_images(test_images_path)
 
-    classifier_path = "C:\\temp\\digits_classifier.joblib.pkl"
+    classifier_path = root + "digits_classifier.joblib.pkl"
     classifier = joblib.load(classifier_path)
 
     i = 0
