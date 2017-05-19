@@ -1,7 +1,7 @@
 import fileinput
 import struct
 from sklearn.externals import joblib
-root = "YOUR:\\ROOT\\PATH"
+root = "YOUR:\\ROOT\\PATH\\"
 def main():
     labels_path = root + "train-labels-idx1-ubyte.gz"
     labels = get_labels(labels_path)
@@ -12,13 +12,14 @@ def main():
     joblib.dump(images, root + "grayscaled_images_numeric.joblib.pkl")
 
 def get_labels(labels_path):
+    print("Parsing labels...")
     g = fileinput.FileInput(labels_path, openhook=fileinput.hook_compressed)
     x = g.__next__()
     head = []
     for i in range(2):
         head.append(struct.unpack(">I", x[4 * i:4 * i + 4])[0])
     magic, n_labels = head
-    print("magic={}\nlabels={}".format(*head))
+    print("magic={}, labels={}".format(*head))
 
     labels = []
     j = 8  # byte index on current chunk
@@ -35,13 +36,14 @@ def get_labels(labels_path):
     return  labels
 
 def get_grayscaled_images(images_path):
+    print("Parsing images...")
     f = fileinput.FileInput(images_path, openhook=fileinput.hook_compressed)
     x = f.__next__()
     head = []
     for i in range(4):
         head.append(struct.unpack(">I", x[4*i:4*i+4])[0])
     magic, n_images, rows, columns = head
-    print("magic={}\nimages={}\nrows={}\ncols={}".format(*head))
+    print("magic={}, images={}, rows={}, cols={}".format(*head))
     j = 16 # index in current chunk
     images = []
     for i in range(n_images):

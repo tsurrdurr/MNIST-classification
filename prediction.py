@@ -14,11 +14,13 @@ def main():
     test_labels = reader.get_labels(test_labels_path)
     test_images = reader.get_grayscaled_images(test_images_path)
 
+    print("Loading classifier...")
     classifier_path = root + "digits_classifier.joblib.pkl"
     classifier = joblib.load(classifier_path)
 
     i = 0
     match = 0
+    print("Predicting test samples classes...")
     test_images = normalize(test_images)
     result = classifier.predict(test_images)
 
@@ -27,6 +29,6 @@ def main():
             match += 1
         i += 1
 
-    print("matched: ", match)
+    print("Matched: ", match)
 
 if  __name__ =='__main__':main()
