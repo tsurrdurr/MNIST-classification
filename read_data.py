@@ -2,7 +2,6 @@ import fileinput
 import struct
 from sklearn.externals import joblib
 root = "YOUR:\\ROOT\\PATH"
-
 def main():
     labels_path = root + "train-labels-idx1-ubyte.gz"
     labels = get_labels(labels_path)
@@ -57,7 +56,7 @@ def get_grayscaled_images(images_path):
                     j = 0
                     val = x[j]
                 if val > 170:
-                    img[r][c] = 1
+                    img[r][c] = 2
                 elif val > 85:
                     img[r][c] = 1
                 else:
