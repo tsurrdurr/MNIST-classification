@@ -2,6 +2,7 @@ import numpy as np
 import classifier_svc as SVC
 import classifier_sgd as SGD
 import classifier_nb as NB
+import classifier_kn as KN
 from sklearn.externals import joblib
 from read_data import root
 import sys
@@ -23,6 +24,10 @@ def main():
         images, labels = read_data()
         nb_classifier = NB.classify(images, labels)
         dump_classifier(nb_classifier)
+    elif(argument == "-kn"):
+        images, labels = read_data()
+        kn_classifier = KN.classify(images, labels)
+        dump_classifier(kn_classifier)
     elif((argument == "-h") | (argument == "-help")):
         print_help()
     else:
@@ -47,4 +52,5 @@ def print_help():
     print("\"-svc\" - use LinearSVC")
     print("\"-sgd\" - use SGDClassifier")
     print("\"-nb\" - use MultinomialNB")
+    print("\"-nn\" - use MultinomialNB")
 if  __name__ =='__main__':main()
