@@ -4,9 +4,22 @@ An attempt in exploring scikit-learn functionality and machine learning algorith
 
 ## Installation
 
-The project requires `scikit-learn`, `scipy`, `numpy` packages.  
-Dependencies are complicated, but [this link](http://www.lfd.uci.edu/~gohlke/pythonlibs/) helped me out a lot with Windows wheels. Download the listed above packages and their dependencies and install them with `pip install .\wheel_name.whl`.  
-I may try and install this on Linux sometime.
+I recomend to use [virtualenv](https://github.com/pypa/virtualenv) and set up a new environment for this project.
+
+Python version used is **Python 3.6**.
+
+Linux installation:   
+You may simply run the following code to install all the dependencies:     
+`pip install -r requirements.txt`   
+
+Windows installation:  
+With Windows, installation from _requirements.txt_ doesn't quite work out for me, but [this link](http://www.lfd.uci.edu/~gohlke/pythonlibs/) helped me out a lot with Windows wheels. 
+Download the following packages for your system and python 3.6:  
+[numpy+mkl](http://www.lfd.uci.edu/~gohlke/pythonlibs/#numpy)  
+[scikit-learn](http://www.lfd.uci.edu/~gohlke/pythonlibs/#scikit-learn)  
+[scipy](http://www.lfd.uci.edu/~gohlke/pythonlibs/#scipy)  
+and install them with:  
+`pip install .\wheel_name.whl`.  
 
 ## Running
 
@@ -42,4 +55,4 @@ Tests the generated classifier with test data.
 Classifier from earlier read from disk and test values are parsed according to MNIST format description. `predict` function of the classifier returns array of predicted values of test images. Then these predictions are compared to test labels.  
 
 For now ~91.4% of test values are recognized with Linear SVC.  
-KNeighbors accuracy score is 98.44% but it takes really much time and disk space to create a classifier.
+KNeighbors prediction test result shows 96.5% accuracy, but it takes really much time and disk space to create a classifier.

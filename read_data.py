@@ -1,7 +1,7 @@
 import fileinput
 import struct
 from sklearn.externals import joblib
-root = "YOUR:\\ROOT\\PATH\\"
+root = "YOUR ROOT PATH ENDING WITH SLASH"
 def main():
     labels_path = root + "train-labels-idx1-ubyte.gz"
     labels = get_labels(labels_path)
@@ -27,7 +27,7 @@ def get_labels(labels_path):
         try:
             val = x[j]
         except IndexError:
-            # read a new chuck from file
+            # read a new chunk from file
             x = g.__next__()
             j = 0
             val = x[j]
